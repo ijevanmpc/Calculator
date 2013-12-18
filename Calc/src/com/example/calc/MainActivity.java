@@ -8,12 +8,12 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class MainActivity extends Activity {
-	Button one, two, tree, four, five, six, seven, eight, nine, zero, plus,
-			minus, div, mult, clear, equal;// buttons on calculator
+	Button one, two, tree, four, five, six, seven, eight, nine, zero, dot,
+			plus, minus, div, mult, clear, equal;// buttons on calculator
 	String str = "";
 	EditText disp;
 	Character operator = 'q';
-	double i, num, tempNum;
+	double num, tempNum;
 	EditText showResult;
 
 	@Override
@@ -31,6 +31,7 @@ public class MainActivity extends Activity {
 		eight = (Button) findViewById(R.id.Button8);
 		nine = (Button) findViewById(R.id.Button9);
 		zero = (Button) findViewById(R.id.Button0);
+		dot = (Button) findViewById(R.id.ButtonDot);
 		plus = (Button) findViewById(R.id.ButtonPlus);
 		minus = (Button) findViewById(R.id.ButtonMin);
 		mult = (Button) findViewById(R.id.ButtonMult);
@@ -43,7 +44,7 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				insert(1);
+				insert("1");
 
 			}
 		});
@@ -51,7 +52,7 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				insert(2);
+				insert("2");
 
 			}
 		});
@@ -59,7 +60,7 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				insert(3);
+				insert("3");
 
 			}
 		});
@@ -67,7 +68,7 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				insert(4);
+				insert("4");
 
 			}
 		});
@@ -75,7 +76,7 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				insert(5);
+				insert("5");
 
 			}
 		});
@@ -83,7 +84,7 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				insert(6);
+				insert("6");
 
 			}
 		});
@@ -91,7 +92,7 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				insert(7);
+				insert("7");
 
 			}
 		});
@@ -99,7 +100,7 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				insert(8);
+				insert("8");
 
 			}
 		});
@@ -107,8 +108,16 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				insert(9);
+				insert("9");
 
+			}
+		});
+
+		dot.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				insert(".");
 			}
 		});
 
@@ -152,15 +161,14 @@ public class MainActivity extends Activity {
 			}
 		});
 		clear.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View arg0) {
 				reset();
-				
+
 			}
 		});
 	}
-
 
 	public void btnclearClicked(View v) {
 		reset();
@@ -175,10 +183,10 @@ public class MainActivity extends Activity {
 		showResult.setText("");
 	}
 
-	private void insert(int j) {
+	private void insert(String i) {
 		// TODO Auto-generated method stub
-		str = str + Integer.toString(j);
-		num = Integer.valueOf(str).intValue();
+		str = str + i;
+		num = Float.valueOf(str).floatValue();
 		showResult.setText(str);
 
 	}
@@ -195,10 +203,12 @@ public class MainActivity extends Activity {
 			num = tempNum + num;
 		else if (operator == '-')
 			num = tempNum - num;
-		else if (operator == '/')
-			num = tempNum / num;
 		else if (operator == '*')
 			num = tempNum * num;
+		else if (operator == '/')
+			num = tempNum / num;
+		if (operator == '/' && num == 0)
+			reset();
 		showResult.setText("" + num);
 	}
 
