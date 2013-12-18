@@ -10,17 +10,18 @@ import android.widget.EditText;
 public class MainActivity extends Activity {
 	Button one, two, tree, four, five, six, seven, eight, nine, zero, dot,
 			plus, minus, div, mult, clear, equal;// buttons on calculator
-	String str = "";
-	EditText disp;
-	Character operator = 'q';
-	double num, tempNum;
-	EditText showResult;
+	String str = ""; // string object, which will place values in EditText
+						// widget
+	Character operator = 'q';// math regular expression
+	float num, tempNum;// inserted numbers
+	EditText showResult;// a Edit text widget, where will enter numbers and show
+						// result
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
+		// connecting to views
 		one = (Button) findViewById(R.id.Button1);
 		two = (Button) findViewById(R.id.Button2);
 		tree = (Button) findViewById(R.id.Button3);
@@ -37,9 +38,11 @@ public class MainActivity extends Activity {
 		mult = (Button) findViewById(R.id.ButtonMult);
 		div = (Button) findViewById(R.id.ButtonDiv);
 		clear = (Button) findViewById(R.id.cButton);
+		zero = (Button) findViewById(R.id.Button0);
 		equal = (Button) findViewById(R.id.ButtonEqual);
 		showResult = (EditText) findViewById(R.id.edit);
 
+		// setting up listeners for each key
 		one.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -112,6 +115,14 @@ public class MainActivity extends Activity {
 
 			}
 		});
+		zero.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				insert("0");
+
+			}
+		});
 
 		dot.setOnClickListener(new OnClickListener() {
 
@@ -169,11 +180,8 @@ public class MainActivity extends Activity {
 			}
 		});
 	}
-
-	public void btnclearClicked(View v) {
-		reset();
-	}
-
+	
+	// reset() function will clear all values and showResult field
 	private void reset() {
 		// TODO Auto-generated method stub
 		str = "";
@@ -183,6 +191,7 @@ public class MainActivity extends Activity {
 		showResult.setText("");
 	}
 
+	// insert() method is developed for getting values when keys are clicked and insert them to EditText
 	private void insert(String i) {
 		// TODO Auto-generated method stub
 		str = str + i;
@@ -196,7 +205,7 @@ public class MainActivity extends Activity {
 		str = "";
 		tempNum = num;
 	}
-
+	// regular match expressions
 	private void calculate() {
 		// TODO Auto-generated method stub
 		if (operator == '+')
