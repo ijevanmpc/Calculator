@@ -7,6 +7,12 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
+/**
+* This activity is used to do regular math expressions with integer and float numbers....
+* 
+* @author Artak and Artush
+*/
+
 public class MainActivity extends Activity {
 	Button one, two, tree, four, five, six, seven, eight, nine, zero, dot,
 			plus, minus, div, mult, clear, equal;// buttons on calculator
@@ -16,7 +22,11 @@ public class MainActivity extends Activity {
 	float num, tempNum;// inserted numbers
 	EditText showResult;// a Edit text widget, where will enter numbers and show
 						// result
-
+	/**
+	 * @brief - This function used to connect button click listeners to UI buttons
+	 * 
+	 
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -42,7 +52,7 @@ public class MainActivity extends Activity {
 		equal = (Button) findViewById(R.id.ButtonEqual);
 		showResult = (EditText) findViewById(R.id.edit);
 
-		// setting up listeners for each key
+		
 		one.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -181,7 +191,11 @@ public class MainActivity extends Activity {
 		});
 	}
 	
-	// reset() function will clear all values and showResult field
+	/**
+	 * @brief - This function reset values of all parameters
+	 * 
+	 
+	 */
 	private void reset() {
 		// TODO Auto-generated method stub
 		str = "";
@@ -191,7 +205,11 @@ public class MainActivity extends Activity {
 		showResult.setText("");
 	}
 
-	// insert() method is developed for getting values when keys are clicked and insert them to EditText
+	/**
+	 * @brief - This function used to insert clicked numbers value to EditText widget
+	 * 
+	 
+	 */
 	private void insert(String i) {
 		// TODO Auto-generated method stub
 		str = str + i;
@@ -205,7 +223,11 @@ public class MainActivity extends Activity {
 		str = "";
 		tempNum = num;
 	}
-	// regular match expressions
+	/**
+	 * @brief - This function used to do regular math operations with typed numbers
+	 * 
+	 
+	 */
 	private void calculate() {
 		// TODO Auto-generated method stub
 		if (operator == '+')
